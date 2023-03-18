@@ -1,4 +1,6 @@
 from fastapi import FastAPI
+from api.users import users_router
+
 
 app = FastAPI(
     debug=True,
@@ -7,6 +9,9 @@ app = FastAPI(
     " stocks & crypto, and see/compare their evolution",
     version="0.1.0",
 )
+
+app.include_router(users_router)
+
 
 if __name__ == "__main__":
     import subprocess
