@@ -11,4 +11,4 @@ app = FastAPI(
 if __name__ == "__main__":
     import subprocess
 
-subprocess.run(["uvicorn", "finance-project.main:app", "--reload"])
+    subprocess.run(["uvicorn", "finance-project.main:app", "--reload"])
