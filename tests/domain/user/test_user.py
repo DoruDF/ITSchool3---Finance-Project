@@ -1,4 +1,5 @@
 import unittest
+
 from domain.user.user import User
 
 
@@ -12,8 +13,8 @@ class UserMyTestCase(unittest.TestCase):
         # assertion
         self.assertEqual(username, actual_username)
 
-    @unittest.skip("TODO: homework")
-    def test_it_sets_empty_list_if_we_do_not_specify_stocks(self):
+    @unittest.skip("TODO: Homework")
+    def test_it_sets_empty_list_if_we_do_not_specify_stock(self):
         pass
 
     @unittest.skip("TODO: homework")
