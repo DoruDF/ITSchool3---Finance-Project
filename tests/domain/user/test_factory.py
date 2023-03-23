@@ -5,8 +5,8 @@ from domain.user.user import User
 
 
 class UserFactoryTestCase(unittest.TestCase):
-    def test_it_creates_a_user_if_the_username_is_between_6_and_20_charts(self):
-        username = "beetween-6-and-20"
+    def test_it_creates_a_user_if_the_username_is_between_6_and_20_chars(self):
+        username = "between-6-and-20"
         factory = UserFactory()
 
         actual_user = factory.make(username)
