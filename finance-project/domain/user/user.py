@@ -7,9 +7,6 @@ class User:
     def username(self) -> str:
         return self.__username
 
-
     @property
     def stocks(self) -> list[str]:
         return self.__stocks
-
-    
