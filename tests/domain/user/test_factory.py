@@ -1,4 +1,5 @@
 import unittest
+
 from domain.user.factory import UserFactory, InvalidUsername
 from domain.user.user import User
 
@@ -9,21 +10,23 @@ class UserFactoryTestCase(unittest.TestCase):
         factory = UserFactory()
 
         actual_user = factory.make(username)
+
         self.assertEqual(username, actual_user.username)
         self.assertEqual(User, type(actual_user))
 
-    def test_raises_exception_if_the_username_is_below_6(self):
-        username = "belo"
+    def test_it_raises_exception_if_the_username_is_below_6_chars(self):
+        username = "below"
         factory = UserFactory()
 
         with self.assertRaises(InvalidUsername) as context:
             factory.make(username)
+
         self.assertEqual(
             "Username should have at least 6 characters", str(context.exception)
         )
 
     @unittest.skip("TODO")
-    def test_raises_exception_if_the_username_is_above_6(self):
+    def test_it_raises_exception_if_the_username_is_above_20_chars(self):
         pass
 
     @unittest.skip("TODO")
