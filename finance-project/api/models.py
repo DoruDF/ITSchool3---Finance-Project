@@ -11,3 +11,4 @@ class UserInfo(BaseModel):
 
     class Config:
         orm_mode = True
+

@@ -11,3 +11,5 @@ class UserFactory:
         if len(username) < 6:
             raise InvalidUsername("Username should have at least 6 characters")
         return User(username)
+
+    

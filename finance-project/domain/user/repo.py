@@ -15,12 +15,11 @@ class UserRepo:
         except:
             self.__users = []
 
-
     def add(self, new_user: User):
         self.__users.append(new_user)
         users_info = [x.username for x in self.__users]
         users_json = json.dumps(users_info)
-        # TODO Home
+        # TODO Homework refactor with
         file = open(self.file_path, "w")
         file.write(users_json)
         file.close()
@@ -32,16 +31,4 @@ class UserRepo:
         for u in self.__users:
             if u.username == username:
                 return u
-
-
-
-
-
-
-
-
-
-
-
-
 

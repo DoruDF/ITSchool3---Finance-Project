@@ -10,3 +10,6 @@ class User:
     @property
     def stocks(self) -> list[str]:
         return self.__stocks
+
+
+
