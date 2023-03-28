@@ -1,3 +1,5 @@
+import re
+
 from domain.user.user import User
 
 
@@ -6,8 +8,9 @@ class InvalidUsername(Exception):
 
 
 class UserFactory:
-    # username should be at least 6 chars and max 20 chars, it can only contain letters, numbers & -
     def make(self, username: str) -> User:
         if len(username) < 6:
             raise InvalidUsername("Username should have at least 6 characters")
+        elif len(username) > 20:
+            raise InvalidUsername("Username should have at most 20 characters")
         return User(username)

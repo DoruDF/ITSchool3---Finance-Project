@@ -7,7 +7,7 @@ from domain.user.repo import UserRepo
 class UserRepositoryTestCase(unittest.TestCase):
     @classmethod
     def setUpClass(cls) -> None:
-        cls.users_file ="test_user.json"
+        cls.users_file = "test_users.json"
         cls.repo = UserRepo(cls.users_file)
 
     def test_it_adds_a_user(self):
@@ -20,7 +20,7 @@ class UserRepositoryTestCase(unittest.TestCase):
         self.assertEqual(1, len(actual_users))
         self.assertEqual(expected_username, actual_users[0].username)
 
-    def test_it_reads_a_user_from_the_system(self):
+    def test_it_reads_a_user_from_the_systen(self):
         repo = UserRepo(self.users_file)
 
         actual_users = repo.get_all()

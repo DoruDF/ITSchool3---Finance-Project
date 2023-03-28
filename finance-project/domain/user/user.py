@@ -1,5 +1,5 @@
 class User:
-    def __init__(self, username: str, stocks: list[str] = None):
+    def __init__(self,username: str, stocks: list[str] = None):
         self.__username = username
         self.__stocks = stocks if stocks else []
 
@@ -10,3 +10,4 @@ class User:
     @property
     def stocks(self) -> list[str]:
         return self.__stocks
+
