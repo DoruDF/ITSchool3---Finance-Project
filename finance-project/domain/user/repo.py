@@ -26,6 +26,11 @@ class UserRepo:
             if u.username == username:
                 return u
 
+    def get_by_id(self, user_id) -> User:
+        for u in self.__users:
+            if u.id == user_id:
+                return u
+
     def __load(self, file_path):
         try:
             # TODO refactor with
