@@ -1,5 +1,5 @@
-from domain.user.user import User
 import uuid
+from domain.user.user import User
 
 
 class InvalidUsername(Exception):
@@ -9,6 +9,7 @@ class InvalidUsername(Exception):
 class UserFactory:
     # username should be at least 6 chars and max 20 chars, it can only contain letters, numbers & -
     def make_new(self, username: str) -> User:
+        # TODO rest of validations
         if len(username) < 6:
             raise InvalidUsername("Username should have at least 6 characters")
         user_uuid = uuid.uuid4()
