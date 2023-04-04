@@ -2,7 +2,7 @@ from fastapi import APIRouter
 
 from domain.asset.factory import AssetFactory
 from domain.user.repo import UserRepo
-from api.models import UserAdd, UserInfo, AssetInfo
+from api.models import UserAdd, UserInfo, AssetInfoUser
 from domain.user.factory import UserFactory
 
 users_router = APIRouter(prefix="/users")
@@ -33,6 +33,11 @@ def get_all_users():
 
 
 # TODO get /users/{user_id}
+@users_router.get("/{user_id", response_model=UserInfo)
+def get_user_by_id(user_id: str):
+    return repo.get_by_id(user_id)
+    pass
+
 @users_router.get("/{username}", response_model=UserInfo)
 def get_user(username: str):
     return repo.get_by_username(username)
@@ -46,7 +51,7 @@ def create_a_user(new_user: UserAdd):
 
 
 # TODO delete a user, DELETE /users/{user_id}
-@users_router.delete("", response_model=UserInfo)
+@users_router.delete("/{user_id", response_model=UserInfo)
 def delete_a_user():
     pass
 
@@ -54,7 +59,7 @@ def delete_a_user():
 # TODO fix api, return asset info
 
 
-@users_router.post("/{user_id}/assets", response_model=AssetInfo)
+@users_router.post("/{user_id}/assets", response_model=AssetInfoUser)
 def add_asset_to_user(user_id: str, ticker: str):
     asset = AssetFactory().make_new(ticker)
     print(asset.__dict__)
