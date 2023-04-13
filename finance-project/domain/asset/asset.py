@@ -51,7 +51,7 @@ class Asset:
     def fifty_day_price(self) -> float:
         return round(self.__info["fiftyDayAverage"], 2)
 
-# TODO: homework from models
+    # TODO: homework from models
 
     @property
     def today_low_price(self) -> float:
@@ -73,5 +73,7 @@ class Asset:
 
     @property
     def price_evolution(self) -> str:
-        price_evolution = (self.closed_price - self.current_price) / self.closed_price * 100
+        price_evolution = (
+            (self.closed_price - self.current_price) / self.closed_price * 100
+        )
         return f"{round(price_evolution, 2)}%"

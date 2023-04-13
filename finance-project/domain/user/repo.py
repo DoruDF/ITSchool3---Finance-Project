@@ -1,19 +1,39 @@
-import json
-
-from domain.user.factory import UserFactory
+import uuid
+from singleton import singleton
+from domain.asset.repo import AssetRepo
 from domain.user.persistence_interface import UserPersistenceInterface
 from domain.user.user import User
 
-# TODO (not homework) singleton
+
+@singleton
 class UserRepo:
     def __init__(self, persistence: UserPersistenceInterface):
+        print("Initializing user repo")
         self.__persistence = persistence
         self.__users = None
 
     def add(self, new_user: User):
-        self.check_users_not_none()
-        self.__users.append(new_user)
         self.__persistence.add(new_user)
+        self.__users = None
+        self.check_users_not_none()
+
+    def edit_by_id(self, user_id: User.id, username: str):
+        self.check_users_not_none()
+        for u in self.__users:
+            if user_id == u.id:
+                u.username = username
+        self.__persistence.edit_by_id(user_id, username)
+        self.__users = None
+        self.check_users_not_none()
+
+    def delete_by_id(self, user_id: User.id):
+        self.check_users_not_none()
+        self.__persistence.delete_by_id(user_id)
+        for u in self.__users:
+            if user_id == u.id:
+                self.__users.remove(u)
+        self.__users = None
+        self.check_users_not_none()
 
     def get_all(self) -> list[User]:
         self.check_users_not_none()
@@ -28,8 +48,9 @@ class UserRepo:
     def get_by_id(self, user_id) -> User:
         self.check_users_not_none()
         for u in self.__users:
-            if u.id == user_id:
-                return u
+            if u.id == uuid.UUID(hex=user_id):
+                assets = AssetRepo().get_for_user(u)
+                return User(uuid=u.id, username=u.username, stocks=assets)
 
     def check_users_not_none(self):
         if self.__users is None:

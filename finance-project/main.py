@@ -1,5 +1,9 @@
 import logging
+import subprocess
+import os
+import time
 from fastapi import FastAPI, Request
+from fastapi_utils.tasks import repeat_every
 from starlette.responses import JSONResponse
 from api.users import users_router
 from api.assets import assets_router
@@ -7,8 +11,9 @@ from domain.user.factory import InvalidUsername
 
 logging.basicConfig(
     filename="finance.log",
-    level= logging.DEBUG,
-    format = "%(asctime)s _ %(levelname)s _ %(name)s _ %(message)s")
+    level=logging.DEBUG,
+    format="%(asctime)s _ %(levelname)s _ %(name)s _ %(message)s",
+)
 
 
 app = FastAPI(
@@ -19,7 +24,6 @@ app = FastAPI(
     " stocks & crypto, and see/compare their evolution",
     version="0.3.0",
 )
-
 app.include_router(users_router)
 app.include_router(assets_router)
 
@@ -31,8 +35,20 @@ def return_invalid_username(_: Request, e: InvalidUsername):
     )
 
 
+@app.on_event("startup")
+@repeat_every(seconds=3600 * 24)
+def clean_images_older_than_24h():
+    files = os.listdir(".")
+    graphs = [f for f in files if f.endswith(".png")]
+    current_posix_time = time.time()
+    ago_24h = current_posix_time - 3600 * 24
+    for g in graphs:
+        g_creation_time = os.path.getctime(g)
+        if g_creation_time < ago_24h:
+            os.remove(g)
+
+
 if __name__ == "__main__":
-    import subprocess
     logging.info("Starting webserver...")
     try:
         subprocess.run(["uvicorn", "main:app", "--reload"])

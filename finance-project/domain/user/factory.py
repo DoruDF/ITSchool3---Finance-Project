@@ -8,7 +8,17 @@ class InvalidUsername(Exception):
 
 class UserFactory:
     def make_new(self, username: str) -> User:
-        # TODO rest of validations
+        # DONE rest of validations
+        uname = username.split("-")
+        uname_str = ""
+        for u in uname:
+            uname_str += u
+        if not uname_str.isalnum():
+            raise InvalidUsername(
+                "Username should be alphanumeric and can only contain the symbol '-'."
+            )
+        if len(username) > 20:
+            raise InvalidUsername("Username should have less than 20 characters.")
         if len(username) < 6:
             raise InvalidUsername("Username should have at least 6 characters.")
         user_uuid = uuid.uuid4()
@@ -18,5 +28,4 @@ class UserFactory:
         return User(
             uuid=uuid.UUID(info[0]),
             username=info[1],
-            stocks=info[2],
         )

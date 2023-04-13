@@ -1,6 +1,8 @@
 from pydantic import BaseModel, Field
 from uuid import UUID
 
+# TODO add the field with description, aprox half
+
 
 class UserAdd(BaseModel):
     username: str = Field(
@@ -8,34 +10,58 @@ class UserAdd(BaseModel):
     )
 
 
-class UserInfo(BaseModel):
-    id: UUID
-    username: str
-    stocks: list[str]
-
-    class Config:
-        orm_mode = True
+class AssetAdd(BaseModel):
+    ticker: str = Field(
+        description="A ticker is a unique series of letters assigned to a security."
+    )
 
 
 class AssetInfoBase(BaseModel):
-    ticker: str
-    name: str
-    country: str
-    sector: str
+    ticker: str = Field(description="The stock symbol.")
+    name: str = Field(description="The company's full name.")
+    country: str = Field(description="The company's headquarters country.")
+    sector: str = Field(description="The company's main field of operations.")
 
     class Config:
         orm_mode = True
 
+
 class AssetInfoUser(AssetInfoBase):
-    units: float
+    units: float = Field(description="The amount of stock units.")
+
 
 class AssetInfoPrice(AssetInfoBase):
-    currency: str
-    current_price: float
+    currency: str = Field(description="The symbol for currency.")
+    current_price: float = Field(description="The stock's current price.")
     # TODO homework
-    today_low_price: float
-    today_high_price: float
-    open_price: float
-    closed_price: float
-    fifty_day_price: float
-    price_evolution: str
+    today_low_price: float = Field(
+        description="The stock's lowest registered price today."
+    )
+    today_high_price: float = Field(
+        description="The stock's highest registered price today."
+    )
+    open_price: float = Field(
+        description="The stock's latest registered opening price."
+    )
+    closed_price: float = Field(
+        description="The stock's latest registered closing price."
+    )
+    fifty_day_price: float = Field(
+        description="The stock's average price over the last fifty days."
+    )
+    price_evolution: str = Field(
+        description="The stock's price evolution over the last 24 hours."
+    )
+
+
+class UserInfo(BaseModel):
+    id: UUID = Field(description="A unique user ID.")
+    username: str = Field(
+        description="Alphanumeric username between 6 and 20 characters."
+    )
+    stocks: list[AssetInfoBase] = Field(
+        description="A list of stocks associated to the user."
+    )
+
+    class Config:
+        orm_mode = True
