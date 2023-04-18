@@ -6,7 +6,7 @@ from domain.user.user import User
 # TODO homework
 # Refactor this class
 # extract the sqlite code from here to the persistence layer
-# also create a class which can save these assets in a file with the users
+# also create a class which can save these assets in a file with the users -> interface
 # this code should have automated tests
 
 
