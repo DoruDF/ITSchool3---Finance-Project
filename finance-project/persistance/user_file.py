@@ -29,3 +29,8 @@ class UserPersistenceFile(UserPersistenceInterface):
         users_json = json.dumps(users_info)
         with open(self.__file_path, "w") as f:
             f.write(users_json)
+
+    def delete_by_id(self, id_:str):
+        current_users = self.get_all()
+    def edit(self, user: User):
+        pass
