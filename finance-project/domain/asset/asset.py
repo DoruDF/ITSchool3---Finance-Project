@@ -61,7 +61,7 @@ class Asset:
         return self.__info["fiftyDayAverage"]
 
     @property
-    def percentage_difference_between_closed_and_current_price(self) -> str:
+    def percentage_difference_between_closed_and_current_actual_price(self) -> str:
         difference = self.closed_price - self.current_price
         percentage_difference = (difference / self.closed_price) * 100
         if difference > 0:
