@@ -32,5 +32,8 @@ class UserPersistenceFile(UserPersistenceInterface):
 
     def delete_by_id(self, id_:str):
         current_users = self.get_all()
+        updated_users_list = [
+            u for u in current_users if u.id != uuid.UUID(hex=id)
+        ]
     def edit(self, user: User):
         pass
