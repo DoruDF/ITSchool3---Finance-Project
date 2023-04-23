@@ -4,6 +4,7 @@ import os
 import time
 from fastapi import FastAPI, Request
 from fastapi_utils.tasks import repeat_every
+
 from api.users import users_router
 from api.assets import assets_router
 from domain.user.factory import InvalidUsername
