@@ -15,5 +15,5 @@ pip install -r requirements.txt
 '''
 
 This project uses FastAPI & uvicorn.
-FastAPI docs: https://fastapi.tiangolo.com/   
+FastAPI docs: https://fastapi.tiangolo.com/
 
