@@ -45,15 +45,5 @@ Matplotlib - a Python library for creating static, animated, and interactive vis
 Sqlite3 - SQLite is library that implements a small, fast, self-contained, high-reliability, full-featured, SQL database engine
 
 
-Resources
 
-For more information about FastAPI, visit their official documentation.
-
-For more information about yahooquery, visit their official documentation.
-
-For more information about yfinance, visit their official documentation.
-
-For more information about Matplotlib, visit their official documentation
-
-For more information about Sqlite3, visit their official documentation
 
