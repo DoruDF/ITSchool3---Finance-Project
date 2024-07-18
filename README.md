@@ -1,4 +1,6 @@
 Fintech Portfolio API
+
+
 The Fintech Portfolio API is a web server with a REST API that allows you to keep track of your different financial assets and compare their evolution over time.
 
 ![image](https://github.com/user-attachments/assets/33208bc9-890b-4472-bcd1-f1e3b150fba6)
